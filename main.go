@@ -48,9 +48,9 @@ if len(readFile) == nil {
 			continue
 		} else {
 			storeRead := []readStore{}
-			storeRead = append(storeRead, readStore{idread: [strings.Split(line, "\t")[0]],
-				    tag: [strings.Split(line, "\t")[5]],
-				    seq: [strings.Split(line,"\t")[9]]
+			storeRead = append(storeRead, readStore{idread: strings.Split(line, "\t")[0],
+				    tag: strings.Split(line, "\t")[5],
+				    seq: strings.Split(line,"\t")[9],
 			}
 		}
 	}
