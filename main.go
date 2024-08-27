@@ -6,7 +6,9 @@ Universitat Potsdam
 Date 2024-8-27
 
 structs and inheritances for making the pacbiohifi genome alignments easier
-for the web browse and calling through the http.
+for the web browse and calling through the http. It takes the alignment files,
+parses the alignments and then makes a struct based JSON for easy feed into the
+database and also writes a CSV for direct import into the SQLITE, MongoDB and PostGresSQL.
 
 */
 
@@ -21,13 +23,6 @@ import (
 
 func main () {
 
-	// Task to complete today:
-	// 1. Implement inteheritance
-	// 2. route the CIGAR and the sequence alignment to the GMOD
-	// 3. check for those and extract those reads using the form submitter
-
-
-
 type readStore struct {
 	idread string
 	tag int
@@ -36,6 +31,7 @@ type readStore struct {
 
 
 readFile := os.Args[1:]
+writefile := os.Args[2:]
 if len(readFile) == nil {
 	panic(err)
 	log.Fatal(err)
@@ -51,20 +47,23 @@ if len(readFile) == nil {
 		if strings.HasPrefix(line, "@") {
 			continue
 		} else {
-	          // calling the func with in the else loop to manage the faster rates and
-			// not calling the iterator again and it is directly reading the line
-			// from the previous Buffer.Scan(). Still checking this if i can implement this as noone has implemented this way.
-		   func (r *readStore) add(line string) (seqStor string, err) {
-			   r{
-				   idread: strings.Split(line, "\t")[0]
-				   tag : strings.Split(line, "\t")[5]
-				   seq : strings.Split(line, "\t")[9]
+			storeRead := []readStore{}
+			storeRead{idread: [strings.Split(line, "\t")[0]],
+				    tag: [strings.Split(line, "\t")[5]],
+				    seq: [strings.Split(line,"\t")[9]]
 			}
-
 		}
-		}
+	}
+        create, err := os.createFile("writefile")
+	if err != nil {
+		panic(err)
+	}
+	defer create.Close()
+	for i := range storeRead {
+		create.WriteString("The mapped alignment reads along with the CIGAR values are:")
+		create.WriteString("%s, %s, %s", storeRead.idread, storeRead.tag, storeRead.seq)
+		create.WriteString("The file for the sql injection and transaction has been written")
 	}
 
 }
-
 }
