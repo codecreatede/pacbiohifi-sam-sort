@@ -54,7 +54,7 @@ if len(readFile) == nil {
 	          // calling the func with in the else loop to manage the faster rates and
 			// not calling the iterator again and it is directly reading the line
 			// from the previous Buffer.Scan(). Still checking this if i can implement this as noone has implemented this way.
-		   func (r *readStore, line) (readStor string) {
+		   func (r *readStore) add(line string) (seqStor string, err) {
 			   r{
 				   idread: strings.Split(line, "\t")[0]
 				   tag : strings.Split(line, "\t")[5]
