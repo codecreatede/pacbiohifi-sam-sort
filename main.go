@@ -42,7 +42,7 @@ func main() {
 			data = append(data, readStore{
 				idread: strings.Split(line, "\t")[0],
 				tag:    strings.Split(line, "\t")[5],
-				seq:    strings.Split(line, "\t")[9],
+				seq:    strings.Split(line, "\t")[9]
 			})
 		}
 	}
@@ -61,7 +61,7 @@ func main() {
 			data = append(data, readStore{
 				idread: strings.Split(line, "\t")[0],
 				tag:    strings.Split(line, "\t")[5],
-				seq:    strings.Split(line, "\t")[9],
+				seq:    strings.Split(line, "\t")[9]
 			})
 		}
 	}
