@@ -51,6 +51,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer create.Close()
 	readSam := bufio.NewScanner(openFile)
 	for readSam.Scan() {
 		line := readSam.Text()
@@ -65,7 +66,6 @@ func main() {
 			})
 		}
 	}
-	defer create.Close()
 	for i := range data {
 		create.WriteString("The mapped alignment reads along with the CIGAR values are:")
 		create.WriteString("%s, %s, %s", data.idread, data.tag, data.seq)
